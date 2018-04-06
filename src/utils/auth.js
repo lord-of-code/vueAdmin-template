@@ -1,15 +1,14 @@
 import Cookies from 'js-cookie'
 
-const TokenKey = 'Admin-Token'
-
-export function getToken() {
-  return Cookies.get(TokenKey)
-}
-
-export function setToken(token) {
-  return Cookies.set(TokenKey, token)
+export function setToken(state) {
+  debugger
+  Cookies.set('user-token', state.keycloak.token)
+  Cookies.set('user-refresh-token', state.keycloak.refreshToken)
+  Cookies.set('user-id-token', state.keycloak.token)
 }
 
 export function removeToken() {
-  return Cookies.remove(TokenKey)
+  Cookies.remove('user-token')
+  Cookies.remove('user-refresh-token')
+  Cookies.remove('user-id-token')
 }
