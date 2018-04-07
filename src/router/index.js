@@ -38,6 +38,19 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/dict',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Dict',
+        component: _import('dict/index'),
+        meta: { title: 'Dict', icon: 'dict' }
+      }
+    ]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',

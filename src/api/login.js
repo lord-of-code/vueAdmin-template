@@ -1,27 +1,15 @@
 import request from '@/utils/request'
 
 export function login(username, password) {
+  const params = new URLSearchParams()
+  params.append('username', username)
+  params.append('password', password)
+  params.append('client_id', 'adminweb')
+  params.append('grant_type', 'password')
   return request({
-    url: '/user/login',
+    url: process.env.LOGIN_DOMAIN + '/auth/realms/loc/protocol/openid-connect/token',
     method: 'post',
-    data: {
-      username,
-      password
-    }
-  })
-}
-
-export function getInfo(token) {
-  return request({
-    url: '/user/info',
-    method: 'get',
-    params: { token }
-  })
-}
-
-export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post'
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    data: params
   })
 }
