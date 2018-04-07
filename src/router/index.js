@@ -44,7 +44,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'Dict',
-        component: _import('dict/index'),
+        component: () => import('@/views/dict/index'),
         meta: { title: 'Dict', icon: 'dict' }
       }
     ]

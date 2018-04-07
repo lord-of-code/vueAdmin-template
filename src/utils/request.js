@@ -57,6 +57,5 @@ service.interceptors.request.use(config => {
 //     return Promise.reject(error)
 //   }
 // )
->>>>>>> longzhe
 
 export default service
