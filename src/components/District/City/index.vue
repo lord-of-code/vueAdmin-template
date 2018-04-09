@@ -1,12 +1,15 @@
 <template>
-  <el-select v-model="provinceId" filterable @visible-change="getCity" placeholder="请选择城市">
-    <el-option
-      v-for="item in options"
-      :key="item.id"
-      :label="item.name"
-      :value="item.id">
-    </el-option>
-  </el-select>
+  <span style="margin-bottom: 40px;" class="district-font">
+    城市
+    <el-select v-model="cityId" filterable @change="handleCurrentChange" @visible-change="getCity" placeholder="请选择城市">
+      <el-option
+        v-for="item in options"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id">
+      </el-option>
+    </el-select>
+  </span>
 </template>
 
 <script>
@@ -20,7 +23,7 @@ export default {
   data() {
     return {
       options: [],
-      provinceId: null,
+      cityId: null,
       district: {
         type: 1,
         parentId: null
@@ -29,11 +32,13 @@ export default {
   },
   methods: {
     getCity() {
-      // debugger
       this.district.parentId = this.$store.state.dict.provinceId
       getDistrict(this.district).then(response => {
         this.options = response.data.data
       })
+    },
+    handleCurrentChange() {
+      this.$store.dispatch('setCityId', this.cityId)
     }
   }
 }
